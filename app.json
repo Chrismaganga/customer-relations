@@ -31,6 +31,12 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4a02ade7-adcc-4b70-bf5c-56b0de172ea5"
+      }
+    },
+    "owner": "maganga"
   }
 }

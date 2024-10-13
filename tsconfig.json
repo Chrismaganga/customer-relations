@@ -13,5 +13,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-  ]
+, "notes/app/_layout.jsx", "app/navigation/MainTabs.jsx", "app/features/auth/authSlice.jsx", "app/screens/WelcomeScreen.jsx", "app/screens/CustomerScreen.jsx", "app/screens/CustomerListScreen.jsx"  ]
 }
