@@ -1,4 +1,4 @@
-const customers = [
+const Customers = [
     {
         id: 1,
         name: "Alice Johnson",
@@ -73,4 +73,4 @@ const customers = [
     },
 ];
 
-export default customers;
+export default Customers;
