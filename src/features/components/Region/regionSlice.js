@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import Customers from '../utilities/customers';
+import customers from '../../utils/customers';
 
 const initialState = {
-  regions: []
+  regions: customers 
 };
 
 const regionSlice = createSlice({
@@ -31,6 +31,6 @@ const regionSlice = createSlice({
     }
   }
 });
-const { addRegion, removeRegion, addCustomerToRegion, removeCustomerFromRegion } = regionSlice.actions;
+export const { addRegion, removeRegion, addCustomerToRegion, removeCustomerFromRegion } = regionSlice.actions;
 
 export default regionSlice.reducer;
