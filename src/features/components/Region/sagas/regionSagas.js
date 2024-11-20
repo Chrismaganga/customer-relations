@@ -1,6 +1,6 @@
 // import { takeEvery, call, put } from 'redux-saga/effects';
 // import { fetchRegions } from '../services';
-// import { addRegions, setRegionsError } from '../Reducers';
+// import { addRegions, setRegionsError } from '../regionSlice';
 
 
 // function* handleFetchRegions() {

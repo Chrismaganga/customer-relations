@@ -20,6 +20,8 @@ const RegionList = () => {
       {regions.map((region) => (
         <Text key={region.id}>{region.name}</Text>
       ))}
+      console.log(regions);
+      
     </View>
   );
 };
