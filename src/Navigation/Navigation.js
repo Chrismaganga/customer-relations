@@ -5,8 +5,8 @@ import Welcome from '../screens/Welcome';
 import CustomerList from '../screens/CustomerList';
 import CustomerDetail from '../screens/CustomerDetail';
 import RegionList from '../screens/RegionList';
-import RegionDetail from '../screens/RegionDetail';
 import { Ionicons } from '@expo/vector-icons';
+import createCustomer from '../screens/CreateCustomer';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,24 +25,24 @@ const Navigation = () => {
               iconName = focused ? 'list' : 'list-outline';
             } else if (route.name === 'CustomerDetail') {
               iconName = focused ? 'person' : 'person-outline';
+            } else if (route.name === 'Create') {
+              iconName = focused ? 'add-circle' : 'add-circle-outline';
             } else if (route.name === 'RegionList') {
               iconName = focused ? 'map' : 'map-outline';
-            } else if (route.name === 'RegionDetail') {
-              iconName = focused ? 'pin' : 'pin-outline';
             }
-
             return <Ionicons name={iconName} size={size} color={color} />;
           },
           tabBarActiveTintColor: 'tomato',
           tabBarInactiveTintColor: 'gray',
           tabBarStyle: styles.tabBar,
+          headerTitleAlign: 'center', // Center the header title
         })}
       >
         <Tab.Screen name="Welcome" component={Welcome} />
         <Tab.Screen name="CustomerList" component={CustomerList} />
         <Tab.Screen name="CustomerDetail" component={CustomerDetail} />
         <Tab.Screen name="RegionList" component={RegionList} />
-        {/* <Tab.Screen name="RegionDetail" component={RegionDetail} /> */}
+        <Tab.Screen name="Create" component={createCustomer} />
       </Tab.Navigator>
     </View>
   );
@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#001f3f',
-    
   },
   tabBar: {
     backgroundColor: 'blue', 

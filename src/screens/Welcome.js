@@ -1,87 +1,74 @@
-import { ScrollView, Text, StyleSheet, TouchableOpacity, View } from "react-native";
+import React, { useEffect } from 'react';
+import { Animated, Text, View, TouchableOpacity, Linking, ScrollView } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
-  const Welcome = ({ navigation }) => {
-    return (
-     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Customer Relations</Text>
+const Navbar = ({ fadeAnim }) => {
+  const icons = [
+    { name: 'facebook', url: 'https://www.facebook.com' },
+    { name: 'twitter', url: 'https://www.twitter.com' },
+    { name: 'instagram', url: 'https://www.instagram.com' },
+    { name: 'linkedin', url: 'https://www.linkedin.com' },
+  ];
 
-      <View style={styles.section}>
-        <Text style={styles.heading}>Customers</Text>
-        <TouchableOpacity
-         style={styles.button}
-         onPress={() => navigation.navigate("CustomerList")}
-        >
-         <Text style={styles.buttonText}>View Customers</Text>
-        </TouchableOpacity>
+  return (
+    <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', padding: 10, backgroundColor: 'lightgray' }}>
+      <Text style={{ fontSize: 20 }}><Ionicons name="logo-slack" size={24} color="blue" /></Text>
+      <View style={{ flexDirection: 'row' }}>
+        {icons.map((icon, index) => (
+          <TouchableOpacity key={index} onPress={() => Linking.openURL(icon.url)}>
+            <Animated.View
+              style={{
+                opacity: fadeAnim,
+                transform: [{ scale: fadeAnim.interpolate({ inputRange: [0, 1], outputRange: [0.5, 1] }) }],
+                marginHorizontal: 10,
+              }}
+            >
+              <FontAwesome name={icon.name} size={24} color="blue" />
+            </Animated.View>
+          </TouchableOpacity>
+        ))}
       </View>
+    </View>
+  );
+};
 
-      <View style={styles.section}>
-        <Text style={styles.heading}>Customer</Text>
-        <TouchableOpacity
-         style={styles.button}
-         onPress={() => navigation.navigate("CustomerDetail")}
+const Welcome = () => {
+  const fadeAnim = new Animated.Value(0); // Initial value for opacity: 0
+
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 10000,
+      useNativeDriver: true,
+    }).start();
+  }, [fadeAnim]);
+
+  return (
+    <View style={{ flex: 1 }}>
+      <Navbar fadeAnim={fadeAnim} />
+      <ScrollView contentContainerStyle={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Animated.View
+          style={{
+            width: 400,
+            padding: 20,
+            backgroundColor: 'powderblue',
+            opacity: fadeAnim, // Bind opacity to animated value
+          }}
         >
-         <Text style={styles.buttonText}>View Customer</Text>
-        </TouchableOpacity>
-      </View>
+          <Text style={{ fontSize: 24, textAlign: 'center', marginBottom: 20 }}>
+            Customer Relations
+          </Text>
+          <Text style={{ fontSize: 16, textAlign: 'center', marginBottom: 10 }}>
+            customers and their regions in relationship to the company's products and services.
+          </Text>
+          <Text style={{ fontSize: 16, textAlign: 'center' }}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </Text>
+        </Animated.View>
+      </ScrollView>
+    </View>
+  );
+};
 
-      <View style={styles.section}>
-        <Text style={styles.heading}>Regions</Text>
-        <TouchableOpacity
-         style={styles.button}
-         onPress={() => navigation.navigate("RegionList")}
-        >
-         <Text style={styles.buttonText}>View Regions</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.section}>
-        <Text style={styles.heading}>Region</Text>
-        <TouchableOpacity
-         style={styles.button}
-         onPress={() => navigation.navigate("RegionDetail")}
-        >
-         <Text style={styles.buttonText}>View Region</Text>
-        </TouchableOpacity>
-      </View>
-     </ScrollView>
-    );
-  };
-
-  const styles = StyleSheet.create({
-    container: {
-     flexGrow: 1,
-     justifyContent: "center",
-     alignItems: "center",
-     padding: 20,
-     backgroundColor: "#f0f8ff",
-    },
-    title: {
-     fontSize: 28,
-     fontWeight: "bold",
-     marginBottom: 30,
-     color: "#333",
-    },
-    section: {
-     marginBottom: 20,
-     alignItems: "center",
-    },
-    heading: {
-     fontSize: 22,
-     marginBottom: 10,
-     color: "#555",
-    },
-    button: {
-     backgroundColor: "#007bff",
-     padding: 15,
-     borderRadius: 5,
-     alignItems: "center",
-     width: "80%",
-    },
-    buttonText: {
-     color: "white",
-     fontSize: 18,
-    },
-  });
-
-  export default Welcome;
+export default Welcome;

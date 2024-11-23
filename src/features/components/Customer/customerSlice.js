@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import customers from '../../utils/customers';
-
 const customerSlice = createSlice({
     name: 'customers',
     initialState: customers,
