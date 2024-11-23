@@ -42,7 +42,7 @@ const Navigation = () => {
         <Tab.Screen name="CustomerList" component={CustomerList} />
         <Tab.Screen name="CustomerDetail" component={CustomerDetail} />
         <Tab.Screen name="RegionList" component={RegionList} />
-        <Tab.Screen name="RegionDetail" component={RegionDetail} />
+        {/* <Tab.Screen name="RegionDetail" component={RegionDetail} /> */}
       </Tab.Navigator>
     </View>
   );
