@@ -1,4 +1,3 @@
-import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Welcome from '../screens/Welcome';
@@ -6,7 +5,7 @@ import CustomerList from '../screens/CustomerList';
 import CustomerDetail from '../screens/CustomerDetail';
 import RegionList from '../screens/RegionList';
 import { Ionicons } from '@expo/vector-icons';
-import createCustomer from '../screens/CreateCustomer';
+import CreateCustomer from '../screens/CreateCustomer';
 
 const Tab = createBottomTabNavigator();
 
@@ -42,7 +41,7 @@ const Navigation = () => {
         <Tab.Screen name="CustomerList" component={CustomerList} />
         <Tab.Screen name="CustomerDetail" component={CustomerDetail} />
         <Tab.Screen name="RegionList" component={RegionList} />
-        <Tab.Screen name="Create" component={createCustomer} />
+        <Tab.Screen name="Create" component={CreateCustomer} />
       </Tab.Navigator>
     </View>
   );
@@ -54,7 +53,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#001f3f',
   },
   tabBar: {
-    backgroundColor: 'blue', 
+    backgroundColor: 'cyan', 
   },
 });
 

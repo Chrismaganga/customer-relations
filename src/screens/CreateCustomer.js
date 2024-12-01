@@ -23,14 +23,18 @@ const CreateCustomer = () => {
   const handleEdit = (id) => {
     const customer = localCustomers.find(customer => customer.id === id);
     if (customer) {
-      setValue('name', customer.name);
-      setValue('email', customer.email);
-      setValue('address', customer.address);
+      setValue('name', customer.name || '');
+      setValue('email', customer.email || '');
+      setValue('address', customer.address || '');
       setEditingId(id);
     }
   };
+  const handleDelete = (id) => {
+    setLocalCustomers(localCustomers.filter(customer => customer.id !== id));
 
-  return (
+  }
+
+  return ( 
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Create Customer</Text>
 
@@ -116,13 +120,19 @@ const CreateCustomer = () => {
               <Text style={styles.customerText}>{customer.email}</Text>
               <Text style={styles.customerText}>{customer.address}</Text>
             </TouchableOpacity>
+            <TouchableOpacity onPress={() => handleDelete(customer.id)} style={styles.deleteButton}>
+              <Text style={styles.deleteButtonText}>Delete</Text>
+            </TouchableOpacity>
           </View>
+         
         ))}
       </View>
     </ScrollView>
   );
 };
+export default CreateCustomer;
 
+// Duplicate block removed
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
@@ -150,7 +160,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     alignItems: "center",
-    width: 200,
+    width: 100,
   },
   createButton: {
     backgroundColor: "#007BFF",
@@ -188,6 +198,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 5,
   },
+  deleteButtonText: {
+    color: 'white',
+    fontSize: 16,
+    textAlign: 'center',
+    backgroundColor: 'red',
+    borderRadius: 5,
+    width: 80,
+    padding: 5,
+    margin: 20,
+  }
 });
-
-export default CreateCustomer;

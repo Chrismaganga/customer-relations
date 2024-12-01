@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { StyleSheet, View, Text, TouchableOpacity, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Button } from 'react-native';
 import { deleteCustomer, updateCustomer } from '../features/components/Customer/customerSlice';
 
 const CustomerDetail = () => {
@@ -36,26 +36,16 @@ const CustomerDetail = () => {
           <Text style={styles.customerPhone}>Phone: {selectedCustomer.phone}</Text>
           <Text style={styles.customerAddress}>Address: {selectedCustomer.address.street}, {selectedCustomer.address.city}, {selectedCustomer.address.state} {selectedCustomer.address.zip}</Text>
           <Text style={styles.customerRegion}>Region: {selectedCustomer.region}</Text>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity onPress={handleBack} style={[styles.button, styles.backButton]}>
-              <Text style={styles.buttonText}>Back</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleDelete(selectedCustomer.id)} style={[styles.button, styles.deleteButton]}>
-              <Text style={styles.buttonText}>Delete</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleUpdate(selectedCustomer)} style={[styles.button, styles.updateButton]}>
-              <Text style={styles.buttonText}>Update</Text>
-            </TouchableOpacity>
-          </View>
+          <Button title="Back" onPress={handleBack} style={styles.Back}/>
+          <Button title="Delete" onPress={() => handleDelete(selectedCustomer.id)} style={styles.Delete}/>
+          <Button title="Update" onPress={() => handleUpdate(selectedCustomer)} style={styles.udpdate} />
         </View>
       ) : (
         customers && customers.length > 0 ? (
           customers.map((customer) => (
             <TouchableOpacity key={customer.id} onPress={() => handlePress(customer)} style={styles.customerContainer}>
               <Text style={styles.customerName}>{customer.name}</Text>
-              <TouchableOpacity onPress={() => handlePress(customer)} style={[styles.button, styles.viewButton]}>
-                <Text style={styles.buttonText}>View Details</Text>
-              </TouchableOpacity>
+              <Button title="View Details" onPress={() => handlePress(customer)} />
             </TouchableOpacity>
           ))
         ) : (
@@ -69,76 +59,41 @@ const CustomerDetail = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 3,
-    backgroundColor: 'white',
-    justifyContent: 'center',
-    alignItems: 'center',
+    padding: 20,
+    backgroundColor: 'cyan',
+    margin: 10,
   },
   customerContainer: {
     marginBottom: 20,
-    padding: 20,
-    backgroundColor: 'blue',
-    borderRadius: 10,
-    borderColor: 'black',
-    alignItems: 'center',
-    width: '95%',
+    padding: 15,
+    backgroundColor: '#f9f9f9',
+    borderRadius: 5,
   },
   customerName: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: 'bold',
+    alignItems: 'center',
     color: 'red',
-    margin: 15,
-    textAlign: 'center',
   },
   customerEmail: {
-    fontSize: 18,
+    fontSize: 14,
     color: 'blue',
-    margin: 10,
-    textAlign: 'center',
   },
   customerPhone: {
-    fontSize: 18,
-    color: 'white',
-    textAlign: 'center',
-
+    fontSize: 14,
+    color: 'green',
   },
   customerAddress: {
-    fontSize: 18,
-    color: 'white',
-    margin: 10,
-    textAlign: 'center',
+    fontSize: 14,
+    color: 'purple',
   },
   customerRegion: {
-    fontSize: 26,
+    fontSize: 14,
     color: 'orange',
-    margin: 10,
-    textAlign: 'center',
   },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: '100%',
-  },
-  button: {
-    marginVertical: 10,
-    padding: 15,
-    borderRadius: 5,
-    alignItems: 'center',
-    width: '30%',
-  },
-  backButton: {
-    backgroundColor: 'purple',
-  },
-  deleteButton: {
-    backgroundColor: 'red',
-  },
-  updateButton: {
-    backgroundColor: 'green',
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: 'bold',
-  },
+
+
+
 });
 
 export default CustomerDetail;

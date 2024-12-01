@@ -13,7 +13,7 @@ const RegionList = () => {
     <View style={styles.container}>
       {customers.map((customer) => (
         <TouchableOpacity key={customer.id} onPress={() => handlePress(customer)} style={styles.customerContainer}>
-          <Text>Address: {customer.address.street}, {customer.address.city}, {customer.address.state} {customer.address.zip}</Text>
+          <Text>Address: { customer.region.name } { customer.address.street }, { customer.address.city }, { customer.address.state } { customer.address.zip }</Text>
         </TouchableOpacity>
       ))}
     </View>
